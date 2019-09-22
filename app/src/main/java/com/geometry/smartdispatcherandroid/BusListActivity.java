@@ -17,6 +17,7 @@ import model.User;
  * Активность для выбора активного автобуса
  * @author DushinovSV
  * Created by house on 10.12.2017
+ * rebuilded Boyko on 22.09.2019
  */
 public class BusListActivity extends AppCompatActivity {
     private ListView busListView;
