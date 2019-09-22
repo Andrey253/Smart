@@ -35,6 +35,7 @@ import retrofit2.Response;
  * Активность для аутентификации пользователей
  * @author DushinovSV
  * Created by house on 09.12.2017
+ * rebuilded Boyko 22.09.2019
  */
 public class LoginActivity extends AppCompatActivity {
 

@@ -50,6 +50,7 @@ import static com.geometry.smartdispatcherandroid.R.drawable.gradient_background
  * Активность для отображения данных о местоположении автобуса
  * @author DushinovSV
  * Created by house on 29.07.2018
+ * rebuilded Boyko 22.09.2019
  */
 public class BusLocationInfoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{ // Добавлено Бойко А.А. 07,07,2019
