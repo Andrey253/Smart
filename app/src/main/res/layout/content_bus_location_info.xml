@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.geometry.smartdispatcherandroid.BusLocationInfoActivity"
+    tools:showIn="@layout/activity_bus_location_info">
+
+    <!-- На маршруте -->
+    <LinearLayout
+        android:id="@+id/transitView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_for_border"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="25dp" >
+
+        <!-- Следующий автобус -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:background="@drawable/gradient_background"
+            android:orientation="horizontal"
+            android:layout_margin="3dp">
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="143dp"
+                    android:layout_height="119dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="0dp"
+                    app:srcCompat="@drawable/bus_example" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="161dp"
+                android:layout_alignParentTop="true"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="82dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/nomer" />
+
+                <TextView
+                    android:id="@+id/textViewBeforeBus"
+                    android:layout_width="137dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginLeft="41dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="-30dp"
+                    android:text="м026ра"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/textViewBeforeBusTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Интервал"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textViewBeforeBusTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="93dp"
+                    android:gravity="center"
+                    android:text="4 мин 46 сек"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!-- Текущий автобус -->
+        <LinearLayout
+            android:id="@+id/linercurrentbus"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="2"
+            android:background="@drawable/round_rect"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp">
+
+            <!-- Время текущее -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewTransitCurrentTimeTitle"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Время текущее"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewTransitCurrentTime"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="00:00:00"
+                    android:textColor="#FFFFFF"
+                    android:textSize="55sp" />
+            </LinearLayout>
+
+            <!-- разделитель -->
+            <LinearLayout
+                android:id="@+id/deviver1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorLightGreenMD"
+                android:orientation="horizontal"></LinearLayout>
+            <!-- Спешит отстает -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewRouteBusStateWord"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="спешит"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewRouteBusState"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="2 мин 12 сек"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <!-- разделитель -->
+            <LinearLayout
+                android:id="@+id/deviver2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorLightGreenMD"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_weight="5"
+                android:orientation="vertical">
+                <!-- Текст следующая остановка -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textViewBeforeStationTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="bottom"
+                        android:text="След.остановка"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <!-- Следующая остановка -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textViewBeforeStation"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8.5"
+                        android:text="Академ.г"
+                        android:textColor="#FFFFFF"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/textViewBeforeStationTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="2 мин 5 сек"
+                        android:textSize="35sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Сзади идущий автобус -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:background="@drawable/gradient_background"
+            android:orientation="horizontal"
+            android:layout_margin="3dp">
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="143dp"
+                    android:layout_height="119dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="0dp"
+                    app:srcCompat="@drawable/bus_example" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="161dp"
+                android:layout_alignParentTop="true"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="82dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="4dp"
+                    app:srcCompat="@drawable/nomer" />
+
+                <TextView
+                    android:id="@+id/textViewAfterBus"
+                    android:layout_width="137dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginLeft="41dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="-30dp"
+                    android:text="м026ра"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/textViewAfterBusTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Интервал"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textViewAfterBusTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="93dp"
+                    android:gravity="center"
+                    android:text="4 мин 46 сек"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- Конечная остановка -->
+    <LinearLayout
+        android:id="@+id/endStationView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/backgroud_texture"
+        android:weightSum="14">
+
+        <!-- Информация для водителя -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="14"
+            android:background="@drawable/gradient_background"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/textViewEndStationCurrentTimeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Текущее время"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewEndStationCurrentTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="14:46"
+                    android:textColor="#FFFFFF"
+                    android:textSize="55sp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listqueue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Автобус не на маршруте -->
+    <LinearLayout
+        android:id="@+id/busNotRouteView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/gradient_background"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textViewBusNotRouteValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Автобус не на маршруте"
+            android:textColor="@color/colorGreyMD"
+            android:textSize="35sp" />
+
+
+    </LinearLayout>
+
+    <!-- Ошибки в работе -->
+    <LinearLayout
+        android:id="@+id/dataNotFoundView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:background="@drawable/gradient_background"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:id="@+id/textViewDataNotFoundValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="Произошли ошибки в работе приложения"
+            android:textColor="@color/colorAccent"
+            android:textSize="35sp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
