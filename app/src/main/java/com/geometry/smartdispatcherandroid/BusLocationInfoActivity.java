@@ -27,16 +27,13 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import adapters.BusEndItemAdapter;
 import api.ApiService;
 import api.Client;
 import common.SystemConstants;
-//import controllers.UserController;
 import model.EndStationBusQueueItem;
 import helpers.CommonHelper;
 import model.Bus;
@@ -45,7 +42,6 @@ import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import static com.geometry.smartdispatcherandroid.R.drawable.gradient_backgroundbackward;
 import static com.geometry.smartdispatcherandroid.R.drawable.gradient_backgroundforward;
 import static com.geometry.smartdispatcherandroid.R.drawable.gradient_backgroundnorm;
@@ -89,11 +85,6 @@ public class BusLocationInfoActivity extends AppCompatActivity
     private SharedPreferences sPref;
 
     /**
-     * Контроллер для работы пользователей
-     */
-    //private UserController userController;
-
-    /**
      * Активный водитель
      */
     private User activeUser;
@@ -114,7 +105,6 @@ public class BusLocationInfoActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.toolbar); //Вешаем слушатель на боковое меню
         navigationView.setNavigationItemSelectedListener(this);     // Бойко А.А. 07,07,2019
-
 
         typeFace = Typeface.createFromAsset(getAssets(), "fonts/Helvetica CE Regular.ttf");
 
@@ -198,15 +188,6 @@ public class BusLocationInfoActivity extends AppCompatActivity
             try {
                 String token = arg[0];
                 String busId = arg[1];
-/*                String parameters = String.format("/smartdispatcher/android/location_data/%s/%s", token, busId);
-
-                HttpGet http = new HttpGet(CommonHelper.getHostName() + parameters);
-                DefaultHttpClient hc = new DefaultHttpClient();
-                ResponseHandler response = new BasicResponseHandler();
-                String responceText = (String) hc.execute(http, response);
-                System.out.println("my CommonHelper.getHostName() + parameters = " + CommonHelper.getHostName() + parameters);
-
-                Object locationData = HttpRequestHelper.parseResponceRequestLocationData(responceText);*/
 
                 final ApiService api = Client.getApiService();
                 Call<BusState> call = api.getBusLocationData(token, busId);
@@ -229,8 +210,6 @@ public class BusLocationInfoActivity extends AppCompatActivity
                             if (response.body().getBusLocationId() == Integer.MAX_VALUE) {
                                 showErrorMessage();
                             }
-
-                            response.body().getBusLocationId();
                         }
                     }
 

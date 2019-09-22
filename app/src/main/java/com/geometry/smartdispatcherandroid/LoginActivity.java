@@ -119,21 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
-/*                            Bus.deleteAll(Bus.class);
-                            User.deleteAll(User.class);
 
-
-                            user = response.body();
-                            busList =  user.getBuses(); // Получение от активного юзера лист автобусов
-                            roles =  user.getRoles(); // Получение от активного юзера roles
-
-                            user.save(); // Сохраняем объект в базу, он же и есть активный user
-                            for (Bus bus : busList){ bus.save();} // Сохраняем список автобусов*/
-
-                                // Если ошибка пустая
-
-//                            userController.saveActiveUserInfoToDb();
-                            //savePropertyPasswordFromUi();
                             isRequestSending = false;
 
                             if (!response.body().isEmptyUser()){

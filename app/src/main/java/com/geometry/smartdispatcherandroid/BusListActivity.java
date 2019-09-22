@@ -7,14 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import com.google.gson.Gson;
-import com.orm.SugarContext;
-
 import java.util.List;
-
 import adapters.BusInfoItemAdapter;
-//import controllers.UserController;
 import model.Bus;
 import model.User;
 
@@ -44,23 +39,11 @@ public class BusListActivity extends AppCompatActivity {
      */
     private Bus selectedBus;
 
-    /**
-     * Контроллер для работы пользователей
-     */
-    //private UserController userController;
-
-    /**
-     * Активный водитель
-     */
-    private User activeUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_list);
-
-        SugarContext.init(this);
-
+        //SugarContext.init(this); // инициализация SugarRecord  для работы ORM
         User user = new Gson().fromJson(getIntent().getStringExtra("activeUser"), User.class);
 
         //TODO на весь экран, код может пригодится
@@ -70,13 +53,8 @@ public class BusListActivity extends AppCompatActivity {
         busListView = findViewById(R.id.busListView); // Лист автобусов активного юзера
 
         String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-/*        userController = new UserController(this, deviceId);
-        activeUser = userController.getActiveUser();*/
-        //User activeuser = User.findById(User.class,1); // Чтение активного юзера из базы
-        //System.out.println("my activeuser "+activeuser);
 
         buses = user.getBuses(); // Получение от активного юзера лист автобусов
-        //buses = activeUser.getBuses();
         busInfoItemAdapter = new BusInfoItemAdapter(this, buses);
         busListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         busListView.setAdapter(busInfoItemAdapter);
@@ -108,20 +86,9 @@ public class BusListActivity extends AppCompatActivity {
     public void onButtonApply (View view) {
 
         activeBus = new Gson().toJson(selectedBus);
-
         Intent intent = new Intent(BusListActivity.this, BusLocationInfoActivity.class);
         intent.putExtra("activeBus", activeBus);
         intent.putExtra("activeUser", getIntent().getStringExtra("activeUser"));
         startActivity(intent);
-
-/*        userController.setActiveBusIdFromNumber(selectedBus.getBusState());
-        userController.saveActiveBusIdToDb();
-        startActivity(new Intent(this, BusLocationInfoActivity.class));*/
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-       // userController.closeConnection();
     }
 }

@@ -21,7 +21,7 @@ public interface ApiService {
 
     @GET("/smartdispatcher/android/location_data/{token}/{busId}")
     Call<BusState> getBusLocationData(
-            @Path("token") String token
-           ,@Path("busId") String busid
+                @Path("token") String token
+               ,@Path("busId") String busid
     );
 }
