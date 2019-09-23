@@ -23,13 +23,14 @@ import com.orm.SugarContext;
 import api.ApiService;
 import api.Client;
 import common.SystemConstants;
-//import controllers.UserController;
 import helpers.CommonHelper;
 import helpers.StringHelper;
 import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+//import controllers.UserController;
 
 /**
  * Активность для аутентификации пользователей
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     private CheckBox rememberPasswordCheckbox;
     private TextView versionNameTV;
+    //String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
     /**
      * Объект для сохранения настроек
@@ -268,6 +270,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("loginActivity_loginTextBox", CommonHelper.getValueOrEmptyString(loginTextBox));
         editor.putString("loginActivity_passwordTextBox", CommonHelper.getValueOrEmptyString(passwordTextBox));
         editor.putString("loginActivity_messageView", CommonHelper.getValueOrEmptyString(messageView));
+        editor.putString("loginActivity_rememberPasswordCheckbox", String.valueOf(rememberPasswordCheckbox.isChecked()));
 
         editor.commit();
     }
@@ -281,6 +284,7 @@ public class LoginActivity extends AppCompatActivity {
         loginTextBox.setText(sPref.getString("loginActivity_loginTextBox", SystemConstants.EMPTY_STRING));
         passwordTextBox.setText(sPref.getString("loginActivity_passwordTextBox", SystemConstants.EMPTY_STRING));
         messageView.setText(sPref.getString("loginActivity_messageView", SystemConstants.EMPTY_STRING));
+        rememberPasswordCheckbox.setChecked(Boolean.parseBoolean(sPref.getString("loginActivity_rememberPasswordCheckbox", SystemConstants.EMPTY_STRING)));
     }
 
     /**

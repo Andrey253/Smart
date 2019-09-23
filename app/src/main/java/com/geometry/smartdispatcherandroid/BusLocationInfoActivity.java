@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,21 +28,24 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import adapters.BusEndItemAdapter;
 import api.ApiService;
 import api.Client;
 import common.SystemConstants;
-import model.EndStationBusQueueItem;
 import helpers.CommonHelper;
 import model.Bus;
 import model.BusState;
+import model.EndStationBusQueueItem;
 import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import static com.geometry.smartdispatcherandroid.R.drawable.gradient_backgroundbackward;
 import static com.geometry.smartdispatcherandroid.R.drawable.gradient_backgroundforward;
 import static com.geometry.smartdispatcherandroid.R.drawable.gradient_backgroundnorm;
@@ -117,7 +121,7 @@ public class BusLocationInfoActivity extends AppCompatActivity
         setContentView(R.layout.activity_bus_location_info);
 /*        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // Отключение угасания экрана
         NavigationView navigationView = findViewById(R.id.toolbar); //Вешаем слушатель на боковое меню
         navigationView.setNavigationItemSelectedListener(this);     // Бойко А.А. 07,07,2019
 
@@ -152,9 +156,8 @@ public class BusLocationInfoActivity extends AppCompatActivity
         //userController = new UserController(this, deviceId);
 
 
-
-        activeUser = new Gson().fromJson(getIntent().getStringExtra("activeUser"), User.class);
-        activeBus = new Gson().fromJson(getIntent().getStringExtra("activeBus"), Bus.class);
+        activeUser  = new Gson().fromJson(getIntent().getStringExtra("activeUser"   ), User.class);
+        activeBus   = new Gson().fromJson(getIntent().getStringExtra("activeBus"    ), Bus.class);
 
         activeBusId = activeBus.getBusId();
 

@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,15 +47,22 @@ public class BusInfoItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
+
         if (view == null){
+
             view = layoutInflater.inflate(R.layout.bus_info_item_layout, parent,false );
         }
         Bus bus = getBusInfo(position);
+
         TextView textItemNumBus = view.findViewById(R.id.textItemBusState);
         textItemNumBus.setText(bus.getBusState());
 
         TextView textItemNumRoute = view.findViewById(R.id.textItemRouteNumber);
         textItemNumRoute.setText(bus.getRouteNumber());
+
+        if (bus.getBusState().contains("0")) textItemNumBus.setTextColor(Color.GREEN);
+        else textItemNumBus.setTextColor(Color.WHITE);
+
         return view;
     }
     /**
