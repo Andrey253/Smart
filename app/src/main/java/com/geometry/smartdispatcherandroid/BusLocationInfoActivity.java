@@ -66,6 +66,10 @@ public class BusLocationInfoActivity extends AppCompatActivity
     private TextView textViewBeforeStationTitle;
     private TextView textViewBeforeStation;
     private TextView textViewBeforeStationTime;
+
+    private TextView textViewAfterBus;
+    private TextView textViewAfterBusTime;
+
     private TextView textViewRouteBusState;
     private TextView textViewRouteBusStateWord;
     private TextView textViewTransitCurrentTimeTitle;
@@ -97,6 +101,16 @@ public class BusLocationInfoActivity extends AppCompatActivity
 
     private Bus activeBus;
 
+    //final Handler uiHandler = new Handler();
+    private Timer myTimer;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        myTimer.cancel();
+        //myTimer=null;
+        this.finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +127,8 @@ public class BusLocationInfoActivity extends AppCompatActivity
         linercurrentbus = findViewById(R.id.linercurrentbus); // Подсвечиваем линер
         textViewBeforeBus = findViewById(R.id.textViewBeforeBus);
         textViewBeforeBusTime = findViewById(R.id.textViewBeforeBusTime);
+        textViewAfterBus = findViewById(R.id.textViewAfterBus);               // Сзади идущий
+        textViewAfterBusTime = findViewById(R.id.textViewAfterBusTime);
         textViewBeforeStationTitle = findViewById(R.id.textViewBeforeStationTitle);
         textViewBeforeStation = findViewById(R.id.textViewBeforeStation);
         textViewBeforeStationTime = findViewById(R.id.textViewBeforeStationTime);
@@ -146,7 +162,7 @@ public class BusLocationInfoActivity extends AppCompatActivity
         hideAllControls();
         loadPreferences();
 
-        Timer myTimer = new Timer();
+        myTimer = new Timer();
         final Handler uiHandler = new Handler();
         myTimer.schedule(new TimerTask() {
             @Override
@@ -196,7 +212,7 @@ public class BusLocationInfoActivity extends AppCompatActivity
                     @Override
                     public void onResponse(Call<BusState> call, Response<BusState> response) {
                         if (response.isSuccessful()) {
-
+                            System.out.println("my response "+response);
                             if(CommonHelper.isNull(response.body())) {
                                 Log.e(SystemConstants.LOG_TAG, "Error send http location data request null result");}
                             if(response.body().getBusLocationId() == SystemConstants.BUS_END_STATION_LOCATION) {
@@ -333,6 +349,8 @@ public class BusLocationInfoActivity extends AppCompatActivity
 
         textViewBeforeBus.setText(busState.getBeforeBusNumber());
         textViewBeforeBusTime.setText(busState.getBeforeBusTimeInterval());
+        textViewAfterBus.setText(busState.getAfterBusNumber());           // after bus
+        textViewAfterBusTime.setText(busState.getAfterBusTimeInterval());
         textViewBeforeStation.setText(busState.getBeforeStationName());
         textViewBeforeStationTime.setText(busState.getBeforeStationArrivalTime());
 
@@ -442,6 +460,8 @@ public boolean onNavigationItemSelected(MenuItem item) {
 
         textViewBeforeBus.setText(sPref.getString("busLocationActivity_textViewBeforeBus", SystemConstants.EMPTY_STRING));
         textViewBeforeBusTime.setText(sPref.getString("busLocationActivity_textViewBeforeBusTime", SystemConstants.EMPTY_STRING));
+/*        textViewAfterBus.setText(sPref.getString("busLocationActivity_textViewBeforeBus", SystemConstants.EMPTY_STRING));    // Сзади
+        textViewAfterBusTime.setText(sPref.getString("busLocationActivity_textViewBeforeBusTime", SystemConstants.EMPTY_STRING));*/
         textViewBeforeStation.setText(sPref.getString("busLocationActivity_textViewBeforeStation", SystemConstants.EMPTY_STRING));
         textViewBeforeStationTime.setText(sPref.getString("busLocationActivity_textViewBeforeStationTime", SystemConstants.EMPTY_STRING));
         textViewRouteBusState.setText(sPref.getString("busLocationActivity_textViewRouteBusState", SystemConstants.EMPTY_STRING));
