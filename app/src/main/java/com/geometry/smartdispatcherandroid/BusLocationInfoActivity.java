@@ -156,8 +156,8 @@ public class BusLocationInfoActivity extends AppCompatActivity
         //userController = new UserController(this, deviceId);
 
 
-        activeUser  = new Gson().fromJson(getIntent().getStringExtra("activeUser"   ), User.class);
-        activeBus   = new Gson().fromJson(getIntent().getStringExtra("activeBus"    ), Bus.class);
+        activeUser  = new Gson().fromJson(getIntent().getStringExtra("activeUser"), User.class);
+        activeBus   = new Gson().fromJson(getIntent().getStringExtra("activeBus" ), Bus.class);
 
         activeBusId = activeBus.getBusId();
 
